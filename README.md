@@ -13,6 +13,14 @@ The analysis is split into three stages:
 2. **Explore the orders** — date range, number of orders, items per order
 3. **Analyse customer behaviour** — combine both tables to find the best- and worst-selling items and what the top orders contain
 
+## 📈 Results at a Glance
+
+Charts built with Python from `restaurant_db`, using the same joins as the SQL queries.
+
+<p align="center"><img src="docs/images/items.png" alt="Top 5 and bottom 5 menu items by number of orders" width="85%"></p>
+
+<p align="center"><img src="docs/images/top_orders.png" alt="Items by cuisine in the five highest-spending orders" width="85%"></p>
+
 ## 🗂️ Database
 
 `restaurant_db` with two tables:
