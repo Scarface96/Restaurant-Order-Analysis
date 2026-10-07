@@ -82,3 +82,7 @@ LIMIT 5;
 ---
 
 👤 **Tony Mulunda** — [GitHub @Scarface96](https://github.com/Scarface96)
+
+## About This Project
+
+A SQL analytics project that turns restaurant transaction data into insights about menu performance, customer ordering behaviour and high-value orders. It demonstrates joins, aggregations, exploratory SQL and translating query results into practical business recommendations.
