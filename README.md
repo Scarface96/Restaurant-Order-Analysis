@@ -4,6 +4,25 @@ A SQL analysis of three months of orders from a restaurant that serves American,
 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-336791?style=flat-square)
+![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=flat-square&logo=duckdb&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=flat-square&logo=plotly&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+
+## 🌐 Live Report
+
+**[scarface96.github.io/Restaurant-Order-Analysis](https://scarface96.github.io/Restaurant-Order-Analysis/)**
+
+Python now loads `create_restaurant_db.sql` into **DuckDB**, runs the project's SQL questions and publishes each query beside its real result, plus new analysis. GitHub Actions rebuilds the page on every push.
+
+**What's new:**
+
+- **The SQL questions, answered live:** queries from `res.sql` and `restaurant analysis.sql` with their results
+- **Menu engineering** (Kasavana–Smith): every dish classed as a Star, Plowhorse, Puzzle or Dog. Six "Dogs" (cheap and rarely ordered) are the first candidates to drop: Chicken Tacos, Potstickers, Cheese Quesadillas, Chips & Guacamole, Veggie Burger, Hot Dog
+- **Busy-hour heatmap:** lunch and dinner rushes, with Tuesday and Wednesday lunches running at about half the usual pace
+- **Cuisine revenue:** Italian earns the most despite selling fewer items than Asian
+- **Basket analysis** (support, confidence, lift): pairings are weak (the best is 1.55× chance), so cross-selling is a modest lever. A "what goes with each dish" explorer shows each dish's strongest partners
+- **Data check:** 137 ordered items have no menu item recorded
 
 ## 📋 Overview
 
@@ -62,14 +81,30 @@ LIMIT 5;
 ## 📁 Repository Contents
 
 ```
+├── analysis/
+│   ├── data.py        # Loads the dump into DuckDB; project queries; menu engineering; pairs; busy hours
+│   ├── report.py      # Turns the analysis into the interactive web page
+│   └── build.py       # Charts, the pairing explorer, site/index.html
+├── tests/             # pytest checks
+├── .github/workflows/deploy.yml   # Test, build and publish to GitHub Pages
 ├── create_restaurant_db.sql          # Creates the database and loads all data
 ├── res.sql                           # Stage 1: menu exploration
 ├── restaurant analysis.sql           # Stages 2–3: orders and customer behaviour
 ├── restaurant_db_data_dictionary.csv # Field definitions
-└── README.md
+└── requirements.txt
 ```
 
 ## 🚀 How to Run
+
+**Python + DuckDB (no database server needed):**
+
+```bash
+pip install -r requirements.txt
+python -m pytest
+python -m analysis.build    # writes site/index.html
+```
+
+**MySQL:**
 
 1. Open **MySQL Workbench** (or any MySQL client).
 2. Run `create_restaurant_db.sql` to build and populate `restaurant_db`.
