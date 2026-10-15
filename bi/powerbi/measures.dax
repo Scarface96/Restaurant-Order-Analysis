@@ -1,0 +1,45 @@
+// Power BI measures for Restaurant Order Analysis
+// Create a measure table first (Home > Enter data > name it _Measures > Load),
+// then for each block: select _Measures > New measure > paste the block > set the format shown.
+
+// ---- Calculated table (Modeling > New table) ----
+Basket =
+-- One row per order with its basket size, for the basket-size histogram.
+SUMMARIZE (
+    fact_order_line,
+    fact_order_line[order_id],
+    "items", COUNT ( fact_order_line[item_id] ),
+    "spend", SUMX ( fact_order_line, RELATED ( dim_menu_item[price] ) )
+)
+
+// Format: $#,0
+Revenue =
+SUMX ( fact_order_line, RELATED ( dim_menu_item[price] ) )
+
+// Format: #,0
+Orders =
+DISTINCTCOUNT ( fact_order_line[order_id] )
+
+// Format: #,0
+Items Sold =
+COUNT ( fact_order_line[item_id] )
+
+// Format: $#,0.00
+Average Order Value =
+DIVIDE ( [Revenue], [Orders] )
+
+// Format: 0.00
+Items per Order =
+DIVIDE ( [Items Sold], [Orders] )
+
+// Format: 0.0%
+Revenue Share =
+DIVIDE ( [Revenue], CALCULATE ( [Revenue], ALL ( dim_menu_item ) ) )
+
+// Format: 0.0
+Avg Orders per Day =
+DIVIDE ( [Orders], DISTINCTCOUNT ( fact_order_line[order_date] ) )
+
+// Format: 0
+Item Rank =
+RANKX ( ALL ( dim_menu_item[item_name] ), [Items Sold] )

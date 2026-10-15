@@ -24,6 +24,12 @@ Python now loads `create_restaurant_db.sql` into **DuckDB**, runs the project's 
 - **Basket analysis** (support, confidence, lift): pairings are weak (the best is 1.55× chance), so cross-selling is a modest lever. A "what goes with each dish" explorer shows each dish's strongest partners
 - **Data check:** 137 ordered items have no menu item recorded
 
+## 📊 Tableau & Power BI
+
+A ready-to-build kit for **Power BI and Tableau** lives in [`bi/`](bi/): model-ready data in a star schema, ready-to-paste DAX measures and Tableau calculated fields, a branded theme, a page-by-page layout, and the exact numbers the finished dashboard should show. Every table is exported from the same cleaning code as the live report, and a test keeps them in step.
+
+**[Open the build guide →](bi/README.md)**
+
 ## 📋 Overview
 
 The analysis is split into three stages:
