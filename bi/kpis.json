@@ -1,0 +1,11 @@
+{
+  "Revenue": 159217.9,
+  "Orders": 5370,
+  "Items sold": 12097,
+  "Average order value": 29.65,
+  "Items per order": 2.25,
+  "Order lines with no item (data gap)": 137,
+  "Menu items": 32,
+  "Most ordered item": "Hamburger (622)",
+  "Date range": "2023-01-01 to 2023-03-31"
+}
